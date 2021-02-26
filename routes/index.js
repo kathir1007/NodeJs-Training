@@ -115,12 +115,13 @@ router.get('/ArrayMethods/reverse', function(req, res, callback) {
 });
 
 router.get('/ArrayMethods/splice', function(req, res, callback) { 
-  const array1 = ['a','b','c','a','b','c','a','b','c'];
+  const array1 = ['a','b','f','g','h','i','j'];
   // splice will add/remove elements in array basced on param passsed
   // splice(position , removal items, ourvalues to add in array)
   //if we give 0 then nothing will be removed and our values will be added in mentioned position
-  res.send({data: "Reverse of array [a,b,c,a,b,c,a,b,c] : " + array1.reverse()});
+  res.send({data: "Splice of array [a,b,e,f,g,h,i] by adding c & d: " + array1.splice(2,0,'a','b')});
 });
+
 
 
 module.exports = router;
