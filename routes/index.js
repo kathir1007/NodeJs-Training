@@ -2,10 +2,17 @@ var express = require('express');
 var assert = require('assert');
 var router = express.Router();
 
+// const {array,arrayreverse} = require('../routes/variables');
+const {array} = require('../routes/variables');
+function auth (){
+  return true;
+}
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/:id/:test', function(req, res, next) {
   const a = "Kathir";
-  console.log(a);
+  console.log(req.params.id);
+  console.log(req.params.test);
   res.render('index', { title: 'Express' });
 
 });
@@ -109,17 +116,28 @@ router.get('/ArrayMethods/pop', function(req, res, callback) {
 });
 
 router.get('/ArrayMethods/reverse', function(req, res, callback) { 
-  const array1 = ['a','b','c','a','b','c','a','b','c'];
+  // const array1 = ['a','b','c','a','b','c','a','b','c'];
   // reverse will print reverse of arry
-  res.send({data: "Reverse of array [a,b,c,a,b,c,a,b,c] : " + array1.reverse()});
+  console.log(array);
+  res.send({data: `Reverse of array  ${array} : ` + array.reverse()});
 });
 
 router.get('/ArrayMethods/splice', function(req, res, callback) { 
-  const array1 = ['a','b','f','g','h','i','j'];
+  // const array1 = ['a','b','f','g','h','i','j'];
   // splice will add/remove elements in array basced on param passsed
   // splice(position , removal items, ourvalues to add in array)
   //if we give 0 then nothing will be removed and our values will be added in mentioned position
-  res.send({data: "Splice of array [a,b,e,f,g,h,i] by adding c & d: " + array1.splice(2,0,'a','b')});
+  res.send({data: `Splice of array ${array} by adding c & d: ` + array.splice(2,0,'a','b')});
+});
+
+router.get('/ArrayMethods/Map', function(req, res, callback) { 
+  
+  const array1 = ['a','b','f','g','h','i','j'];
+  const arrayMap = new Map();
+  array1.forEach(letter => {
+    arrayMap.set(letter,letter);
+  });
+  res.send({data: "Splice of array [a,b,e,f,g,h,i] by adding c & d: " + array.slice()});
 });
 
 
